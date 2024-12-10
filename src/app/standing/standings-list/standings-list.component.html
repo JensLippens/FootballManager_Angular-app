@@ -1,0 +1,83 @@
+<div class="mat-card">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h2 *ngIf="leagueYear; else currentStandings">
+          Standings for League Year: {{ leagueYear }}
+        </h2>
+      </mat-card-title>
+    </mat-card-header>
+
+    <ng-template #currentStandings>
+      <h2>Current League Standings</h2>
+    </ng-template>
+
+    <mat-card-content>
+      <mat-table [dataSource]="standings" matSort class="mat-elevation-z8 demo-table">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Position</mat-header-cell>
+          <mat-cell *matCellDef="let standing; let i = index">{{ i+1 }}</mat-cell>
+        </ng-container>
+        <!-- Team Column -->
+        <ng-container matColumnDef="team">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Team</mat-header-cell>
+          <mat-cell *matCellDef="let standing">{{ standing.teamName }}</mat-cell>
+        </ng-container>
+
+        <!-- Games Played Column -->
+        <ng-container matColumnDef="gamesPlayed">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Games Played</mat-header-cell>
+          <mat-cell *matCellDef="let standing">{{ standing.gamesPlayed }}</mat-cell>
+        </ng-container>
+
+        <!-- Points Column -->
+        <ng-container matColumnDef="points">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Points</mat-header-cell>
+          <mat-cell *matCellDef="let standing">{{ standing.points }}</mat-cell>
+        </ng-container>
+
+        <!-- Wins Column -->
+        <ng-container matColumnDef="wins">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Wins</mat-header-cell>
+          <mat-cell *matCellDef="let standing">{{ standing.wins }}</mat-cell>
+        </ng-container>
+
+        <!-- Losses Column -->
+        <ng-container matColumnDef="losses">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Losses</mat-header-cell>
+          <mat-cell *matCellDef="let standing">{{ standing.losses }}</mat-cell>
+        </ng-container>
+
+        <!-- Draws Column -->
+        <ng-container matColumnDef="draws">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Draws</mat-header-cell>
+          <mat-cell *matCellDef="let standing">{{ standing.draws }}</mat-cell>
+        </ng-container>
+
+        <!-- Goals For Column -->
+        <ng-container matColumnDef="goalsFor">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Goals For</mat-header-cell>
+          <mat-cell *matCellDef="let standing">{{ standing.goalsFor }}</mat-cell>
+        </ng-container>
+
+        <!-- Goals Against Column -->
+        <ng-container matColumnDef="goalsAgainst">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Goals Against</mat-header-cell>
+          <mat-cell *matCellDef="let standing">{{ standing.goalsAgainst }}</mat-cell>
+        </ng-container>
+
+        <!-- Goal Difference Column -->
+        <ng-container matColumnDef="goalDifference">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Goal Difference</mat-header-cell>
+          <mat-cell *matCellDef="let standing">{{ standing.goalDifference }}</mat-cell>
+        </ng-container>
+
+        <!-- Table Header and Rows -->
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </mat-card-content>
+  </mat-card>
+</div>

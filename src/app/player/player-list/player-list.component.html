@@ -1,0 +1,61 @@
+<div>
+    <mat-form-field>
+        <mat-label>Position</mat-label>
+        <mat-select (selectionChange)="onPositionChange($event)">
+            <mat-option [value]="null">All</mat-option>
+            <mat-option *ngFor="let position of positions" [value]="position">
+                {{ position }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Filter on name or team</mat-label>
+        <input matInput (input)="onInput($event)">
+    </mat-form-field>
+</div>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="players">
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="fullName">
+            <th mat-header-cell *matHeaderCellDef> Full name </th>
+            <td mat-cell *matCellDef="let player">{{ player.fullName }}</td>
+        </ng-container>
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> Position </th>
+            <td mat-cell *matCellDef="let player">{{ positionEnum[player.position] }}</td>
+        </ng-container>
+        <!-- Age Column -->
+        <ng-container matColumnDef="age">
+            <th mat-header-cell *matHeaderCellDef> Age </th>
+            <td mat-cell *matCellDef="let player">{{ player.age }}</td>
+        </ng-container>
+
+        <!-- Shirt number Column -->
+        <ng-container matColumnDef="shirtNumber">
+            <th mat-header-cell *matHeaderCellDef> Shirt number </th>
+            <td mat-cell *matCellDef="let player">{{player.shirtNumber}}</td>
+        </ng-container>
+
+        <!-- Left footed Column -->
+        <ng-container matColumnDef="isLeftFooted">
+            <th mat-header-cell *matHeaderCellDef> Left footed </th>
+            <td mat-cell *matCellDef="let player"> {{ player.isLeftFooted ? "Yes" : "No"}} </td>
+        </ng-container>
+
+        <!-- Team Column -->
+        <ng-container matColumnDef="team">
+            <th mat-header-cell *matHeaderCellDef> Team name</th>
+            <td mat-cell *matCellDef="let player">{{player.teamName}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageIndex]="currentPage-1" [length]="totalItemCount" [pageSize]="pageSize"
+        [pageSizeOptions]="[10,15,25]" (page)="onPageChange($event)" showFirstLastButtons aria-label="Select page">
+    </mat-paginator>
+</div>

@@ -1,0 +1,30 @@
+<!-- <div *ngFor="let team of teams" class="mat-card">
+    <mat-card [ngStyle]="{'width': cardWidth}" appearance="outlined">
+        <mat-card-content>{{team.name}}</mat-card-content>
+      </mat-card>
+</div> -->
+<div class="buttons">
+    <button class="buttonyear" mat-raised-button routerLink="/teams">
+        All
+    </button>
+    <button class="buttonyear"
+        mat-raised-button
+        *ngFor="let league of leagues"
+        [routerLink]="'/teams/league/' + league.year"
+        >
+        {{league.year}}
+    </button>
+</div>
+<div class="team-container">
+    <mat-card
+      class="team-card"
+      appearance="outlined"
+      *ngFor="let team of teams"
+      [ngStyle]="{'width': cardWidth}"
+      [routerLink]="'/teams/team/' + team.id"
+    >
+      <mat-card-content>
+        {{ team.name }}
+      </mat-card-content>
+    </mat-card>
+  </div>

@@ -1,0 +1,65 @@
+<div class="mat-card">
+    <mat-card appearance="outlined">
+        <mat-card-header>
+            <mat-card-title>
+                {{team?.name}}
+            </mat-card-title>
+        </mat-card-header>
+
+        <div class="content-wrapper">
+            <mat-card-content class="content-20">
+                <mat-card-subtitle>Coach</mat-card-subtitle>
+                <p> Name: {{team?.coach?.fullName}} </p>
+                <p> Age: {{team?.coach?.age}} </p>
+                <p> Years of experience: {{team?.coach?.yearsOfExperience}} </p>
+                <br>
+                <div>
+                    <h3>View games from {{team?.name}} in:</h3>
+                    <button mat-stroked-button *ngFor="let league of team?.leagues"
+                    [routerLink]="'//games/league/' + league.year + '/team/' + team?.id">            
+                        {{league.year}}
+                    </button>
+                </div>
+            </mat-card-content>
+            
+            <mat-card-content class="content-70">
+                <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 demo-table">
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="fullName">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+                        <mat-cell *matCellDef="let player">{{ player.fullName }}</mat-cell>
+                    </ng-container>
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Position</mat-header-cell>
+                        <mat-cell *matCellDef="let player">{{ positionEnum[player.position] }}</mat-cell>
+                    </ng-container>
+
+                    <!-- Age Column -->
+                    <ng-container matColumnDef="age">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Age</mat-header-cell>
+                        <mat-cell *matCellDef="let player">{{ player.age }}</mat-cell>
+                    </ng-container>
+
+                    <!-- Shirt numbe Column -->
+                    <ng-container matColumnDef="shirtNumber">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Shirt number</mat-header-cell>
+                        <mat-cell *matCellDef="let player">{{ player.shirtNumber }}</mat-cell>
+                    </ng-container>
+
+                    <!-- Left footed Column -->
+                    <ng-container matColumnDef="isLeftFooted">
+                        <mat-header-cell *matHeaderCellDef>Left footed</mat-header-cell>
+                        <mat-cell *matCellDef="let player">{{ player.isLeftFooted ? "Yes" : "No"}}</mat-cell>
+                    </ng-container>
+
+                    <!-- Table Header and Rows -->
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+            </mat-card-content>
+        </div>
+    </mat-card>
+</div>

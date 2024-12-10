@@ -1,0 +1,35 @@
+.center-container {
+  display: flex; /* Use flexbox */
+  flex-direction: column; 
+  align-items: center; /* Optional: Center content vertically */
+  min-height: 100vh; /* Optional: Full viewport height */
+  box-sizing: border-box;
+  padding: 20px; /* Optional: Add padding for better appearance */
+  gap: 20px; /* Add space between child elements */
+}
+.game-matrix table {
+  justify-content: center;
+  border-collapse: collapse;
+  width: 75%;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.game-matrix th,
+.game-matrix td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  min-width: 40px;
+  height: 30px;
+}
+
+.game-matrix th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.matrix-cell {
+  color: rgb(7, 7, 7);
+  font-weight: bold;
+  text-align: center;
+}

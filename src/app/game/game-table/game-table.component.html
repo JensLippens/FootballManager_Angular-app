@@ -1,0 +1,27 @@
+<div class="center-container">
+    <div>
+        <h1>View table from: </h1>
+        <button mat-stroked-button *ngFor="let league of leagues" [routerLink]="'//games/leaguetable/' + league.year">
+            {{league.year}}
+        </button>
+    </div>
+    <div class="game-matrix">
+        <table>
+            <thead>
+                <tr>
+                    <th></th> <!-- Top-left empty corner -->
+                    <th *ngFor="let team of teams">{{ team }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let homeTeam of teams; let i = index">
+                    <th>{{ homeTeam }}</th> <!-- HomeTeam in the first column -->
+                    <td *ngFor="let cell of matrix[i]; let j = index"
+                        [ngStyle]="{ 'background-color': cell.backgroundColor }" class="matrix-cell">
+                        {{ cell.score }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

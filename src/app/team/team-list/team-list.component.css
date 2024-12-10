@@ -1,0 +1,25 @@
+.team-container {
+    display: grid;
+    grid-template-columns: repeat(4, auto); /* 4 cards per row */
+    gap: 16px;
+    justify-content: center;
+  }
+  
+  .team-card {
+    text-align: center;
+    padding: 10px;
+  }
+
+  .buttons {
+    display: flex;                
+    justify-content: center;   
+  }
+
+  .buttonyear {
+    width: 50px;         
+    justify-content: center;    
+    background-color: rgb(5, 5, 5); 
+    margin: 10px;  
+  }
+
+  
